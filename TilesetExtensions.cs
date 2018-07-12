@@ -15,8 +15,9 @@ namespace Sharptile.Unity
             return Enumerable
                 .Range(0, tileset.tilecount)
                 .Select(id => {
-                    var row = (id * tileset.tilewidth) / tileset.imagewidth;
-                    var x = (id * tileset.tilewidth) % tileset.imagewidth;
+                    var row = id / tileset.columns;
+                    var column = id % tileset.columns;
+                    var x = column * tileset.tilewidth;
                     var y = tileset.imageheight - (row * tileset.tileheight) - tileset.tileheight;
 
                     return new SpriteMetaData
